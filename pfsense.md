@@ -19,7 +19,7 @@ Vérification d'intégrité effectuée avec `Get-FileHash -Algorithm SHA256` com
 ## Journal de troubleshooting
 
 ### Problème 1 : IP du LAN non appliquée après le wizard console
-- **Symptôme** : `ifconfig em1` n'affichait aucune ligne `inet` après configuration via le menu "2) Set interface(s) IP address".
+- **Symptôme** : `ifconfig em1` n'affichait aucune ligne `inet` après configuration via le menu "2 Set interface(s) IP address".
 - **Cause identifiée** : conflit d'adressage IP côté hôte Windows — l'adaptateur `VMware Network Adapter VMnet3` avait **deux IP simultanées** (`192.168.10.1` ajoutée automatiquement par VMware après modification du subnet, en plus de `192.168.10.5` ajoutée manuellement), créant un conflit direct avec l'IP LAN de pfSense (`192.168.10.1`).
 - **Solution** : suppression de l'IP en doublon côté Windows avec `Remove-NetIPAddress`.
 
@@ -71,4 +71,4 @@ Vérification d'intégrité effectuée avec `Get-FileHash -Algorithm SHA256` com
 
 Doc officielle : `https://docs.netgate.com/pfsense/en/latest/packages/suricata/index.html`
 
-**Statut : ✅ Installé et actif**
+**Statut :  Installé et actif**
