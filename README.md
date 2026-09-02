@@ -8,14 +8,14 @@
 
 | Brique | Statut |
 |---|---|
-| pfSense (routeur/firewall) | ✅ Opérationnel |
-| Suricata (IDS sur pfSense) | ✅ Installé et actif |
-| Wazuh Manager + Dashboard | ✅ Opérationnel — `https://192.168.10.50` |
-| Agent Wazuh — Client Linux | ✅ Actif (`client-linux-01`) |
-| Sysmon + Agent Wazuh — Client Windows 10 | ⏳ À faire |
-| Intégration VirusTotal | ⏳ À faire |
-| Simulation d'attaques (Nmap, Hydra) | ⏳ À faire |
-| Webinaire réglementation | ⏳ À faire |
+| pfSense (routeur/firewall) |  Opérationnel |
+| Suricata (IDS sur pfSense) |  Installé et actif |
+| Wazuh Manager + Dashboard |  Opérationnel — `https://192.168.10.50` |
+| Agent Wazuh — Client Linux |  Actif (`client-linux-01`) |
+| Sysmon + Agent Wazuh — Client Windows 10 |  À faire |
+| Intégration VirusTotal |  À faire |
+| Simulation d'attaques (Nmap, Hydra) |  À faire |
+| Webinaire réglementation |  À faire |
 
 ---
 
@@ -123,7 +123,7 @@
 
 ## 5. Prochaines étapes — Guide complet (à suivre dans l'ordre)
 
-### ✅ Étape A — Suricata sur pfSense (IDS réseau) — FAIT
+###  Étape A — Suricata sur pfSense (IDS réseau) — FAIT
 1. Interface web pfSense → **System > Package Manager > Available Packages**
 2. Rechercher `Suricata`, cliquer **Install**
 3. Une fois installé : **Services > Suricata > Interfaces** → **Add**, sélectionner l'interface **LAN**
@@ -131,7 +131,7 @@
 5. Démarrer Suricata sur l'interface (bouton play vert)
 6. Doc officielle : `https://docs.netgate.com/pfsense/en/latest/packages/suricata/index.html`
 
-### ✅ Étape B — Wazuh Manager (VM dédiée, 4 Go RAM) — FAIT (voir journal détaillé section 2bis)
+###  Étape B — Wazuh Manager (VM dédiée, 4 Go RAM) — FAIT (voir journal détaillé section 2bis)
 1. VM Ubuntu Server (ou Debian) sur VMnet3, IP statique conseillée dans la plage DHCP réservée ou hors plage (ex. `192.168.10.50`)
 2. Installation "all-in-one" (Indexer + Manager + Dashboard) via le script officiel :
    ```bash
@@ -152,7 +152,7 @@
 3. Dans `ossec.conf` de l'agent, ajouter la collecte des logs Sysmon (canal `Microsoft-Windows-Sysmon/Operational`) — instructions détaillées dans la doc ci-dessus
 4. Vérifier dans le Dashboard Wazuh que l'agent apparaît **Active**
 
-### ✅ Étape D — Agent Wazuh sur le client Linux — FAIT (voir journal détaillé section 2ter)
+###  Étape D — Agent Wazuh sur le client Linux — FAIT (voir journal détaillé section 2ter)
 1. Doc officielle : `https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-linux.html`
 2. Installer et activer `auditd` en complément pour la surveillance des appels système et de l'authentification — **⏳ auditd reste à installer**, seul l'agent Wazuh est fait pour l'instant
 3. ~~Enregistrer l'agent auprès du Manager (IP + clé), vérifier statut Active dans le Dashboard~~ → Statut **Active** confirmé pour `client-linux-01`
@@ -192,7 +192,7 @@
 ```
 /soc-lab-tp/
   README.md              ← ce fichier : contexte, architecture, état d'avancement, liens vers le détail
-  pfsense.md             ← ✅ fait : install pfSense + troubleshooting + Suricata
+  pfsense.md             ←  fait : install pfSense + troubleshooting + Suricata
   wazuh.md                (à créer quand tu scindes la section 3 ci-dessus)
   client-linux.md          (à créer quand tu scindes la section 4 ci-dessus)
   client-windows.md        (à créer une fois Windows fait)
@@ -201,7 +201,3 @@
   webinaire-reglementation.md
   screenshots/
 ```
-
-**Approche recommandée** : commit au fur et à mesure, pas tout d'un coup. Chaque fois qu'une brique est terminée, tu extrais sa section de ce README vers son propre fichier `.md` (comme on vient de le faire pour pfSense), tu ajoutes les captures d'écran correspondantes dans `screenshots/`, et tu commits avec un message clair (ex. `"Add Wazuh Manager troubleshooting"`).
-
-Montrer le troubleshooting réel est un vrai plus dans un portfolio GitHub — ça prouve une capacité de diagnostic, pas juste un suivi de tutoriel.
